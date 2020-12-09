@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :find_user, except: [:new :create]
+
   def new
     @user = User.new
   end
@@ -13,25 +15,21 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = User.find_by_id(params[:id])
-  end
+  def edit; end
 
-  def update
-    @user = User.find_by_id(params[:id])
-  end
+  def update; end
 
-  def show
-    @user = User.find_by_id(params[:id])
-  end
+  def show; end
 
-  def destory
-    @user = User.find_by_id(params[:id])
-  end
+  def destory; end
 
   private
 
   def user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  def find_movie
+    @user = User.find_by_id(params[:id])
   end
 end
