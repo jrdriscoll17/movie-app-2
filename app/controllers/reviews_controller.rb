@@ -10,13 +10,13 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.movie_id = params[:movie_id]
     @review.user_id = current_user.id
-    @review.save ? redirect_to movies_path : render 'new'
+    @review.save ? (redirect_to movies_path) : (render 'new')
   end
 
   def edit; end
 
   def update
-    @review.update(review_params) ? redirect_to user_path(@review.user) : render 'edit'
+    @review.update(review_params) ? (redirect_to user_path(@review.user)) : (render 'edit')
   end
 
   def destroy

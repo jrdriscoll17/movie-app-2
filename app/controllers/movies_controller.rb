@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     @movie.reviews.first.user = current_user
-    @movie.save ? redirect_to movie_path(@movie) : render 'new'
+    @movie.save ? (redirect_to movie_path(@movie)) : (render 'new')
   end
 
   def edit; end
