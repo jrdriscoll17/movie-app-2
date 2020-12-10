@@ -8,16 +8,13 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    @movie.reviews.build
   end
 
   def create
     @movie = Movie.new(movie_params)
-
-    if @movie.save
-      redirect_to movie_path(@movie)
-    else
-      render 'new'
-    end
+    @movie.reviews.first.user = current_user
+    @movie.save ? redirect_to movie_path(@movie) : render 'new'
   end
 
   def edit; end
@@ -31,7 +28,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :rating, :runtime, :plot, :poster)
+    params.require(:movie).permit(:title, :rating, :runtime, :plot, :poster, reviews_attributes: [:rating, :content, :user_id])
   end
 
   def find_movie
