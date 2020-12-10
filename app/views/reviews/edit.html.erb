@@ -1,3 +1,4 @@
+<%= render partial: 'application/errors', locals: {errors: @review.errors}%>
 <h1><%= @review.movie.title %></h1>
 <%= form_for([@review.user, @review]) do |f| %>
   <%= render partial: 'form', locals: {f: f}%>
