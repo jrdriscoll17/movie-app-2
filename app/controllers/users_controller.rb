@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :require_authenticated_user, only: [:new, :create]
   before_action :find_user, except: [:new, :create]
 
   def new
@@ -16,13 +17,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit; end
-
-  def update; end
-
   def show; end
 
-  def destory; end
+  def destory
+    @user.delete
+    redirect_to new_user_path
+  end
 
   private
 

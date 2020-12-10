@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  skip_before_action :require_authenticated_user, only: [:index, :show]
   before_action :find_movie, only: [:show, :edit, :destroy, :update]
   
   def index
