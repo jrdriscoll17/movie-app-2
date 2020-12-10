@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password)
   end
 
-  def find_movie
+  def find_user
     @user = User.find_by_id(params[:id])
   end
 end
