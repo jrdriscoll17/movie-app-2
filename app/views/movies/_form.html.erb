@@ -14,5 +14,11 @@
   <%= f.label :poster %>
   <%= f.text_field :poster %><br>
   <br>
+  <%= f.fields_for :reviews do |r| %>
+    <%= r.label :rating %>
+    <%= r.number_field :rating %><br>
+    <%= r.label :content %>
+    <%= r.text_area :content %>
+  <% end %>
   <%= f.submit %>
 <% end %>
