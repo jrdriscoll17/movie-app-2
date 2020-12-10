@@ -5,4 +5,23 @@
   <h1><%= movie.plot %></h1>
   <h1><%= movie.poster %></h1>
   <br>
+  <% movie.reviews.each do |review| %>
+    <%= label_tag 'rating', 'Rating:' %>
+    <%= review.rating %><br>
+    <%= label_tag 'content', "Review by: #{review.user.username}" %><br>
+    <%= review.content %><br>
+    <br>
+    <% if review.user == current_user %>
+      <%= button_to 'Edit Your Review', edit_user_review_path(review.user, review), method: :get %>
+    <% end %>
+  <% end %>
+  <% if current_user && movie.review_ids.empty? %>
+    <%= button_to 'Add Review', new_movie_review_path(movie), method: :get %>
+  <% elsif current_user && !current_user.review_ids.any?{ |i| movie.review_ids.include?(i) } %>
+    <%= button_to 'Add Review', new_movie_review_path(movie), method: :get %>
+  <% end %>
 <% end %>
+<% if current_user %>
+  <%= button_to 'Review New Movie', new_movie_path, method: :get %>
+<% end %>
+
