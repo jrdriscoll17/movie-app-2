@@ -1,0 +1,7 @@
+<%= label_tag 'rating:', 'Rating:' %>
+<%= review.rating %><br>
+<%= label_tag 'content:', "Review by: #{review.user.username}" %><br>
+<%= review.content %>
+<% if review.user == current_user %>
+  <%= button_to 'edit', edit_user_review_path(review.user, review), method: :get %>
+<% end %>

@@ -1,3 +1,6 @@
-<h1>Welcome <%= @user.username %>!</h1>
-<h1>Your email is: <%= @user.email %></h1>
-<h1>Your hashed password is: <%= @user.password_digest %></h1>
+<h1>Welcome: <%= @user.username %></h1>
+<h2>Here are your reviews:</h2>
+<% @user.reviews.each do |review| %>
+  <h3><%= review.movie.title %></h3>
+  <%= render partial: 'movies/movie_show', locals: {review: review} %>
+<% end %>

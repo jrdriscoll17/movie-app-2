@@ -3,3 +3,6 @@
 <h1><%= @movie.runtime %></h1>
 <h1><%= @movie.plot %></h1>
 <h1><%= @movie.poster %></h1>
+<% @movie.reviews.each do |review| %>
+  <%= render partial: 'movie_show', locals: {review: review} %>
+<% end %>
